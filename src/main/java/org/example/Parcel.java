@@ -5,7 +5,7 @@ public abstract class Parcel {
     private int weight;
     private String deliveryAddress;
     private int sendDay;
-    private static final double BASE_COST = 0;
+    public static double baseCost = 0;
 
     public Parcel(String description, int weight, String deliveryAddress, int sendDay) {
         this.description = description;
@@ -30,6 +30,8 @@ public abstract class Parcel {
         return deliveryAddress;
     }
 
+
+
     public void packageItem(){
         System.out.println("Посылка <<" + getDescription() + ">> упакована");
     }
@@ -38,6 +40,6 @@ public abstract class Parcel {
     }
 
     public double calculateDeliveryCost(){
-        return BASE_COST*getWeight();
+        return baseCost*getWeight();
     }
 }

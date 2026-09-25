@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class DeliveryApp {
+public class DeliveryApp{
 
     private static final Scanner scanner = new Scanner(System.in);
     private static List<Parcel> allParcels = new ArrayList<>();
+    private static List<Trackable> trackableParcels = new ArrayList<>();
 
     public static void main(String[] args) {
         boolean running = true;
@@ -25,6 +26,9 @@ public class DeliveryApp {
                 case 3:
                     calculateCosts();
                     break;
+                case 4:
+                    reportTrackableDelivery();
+                    break;
                 case 0:
                     running = false;
                     break;
@@ -39,10 +43,12 @@ public class DeliveryApp {
         System.out.println("1 — Добавить посылку");
         System.out.println("2 — Отправить все посылки");
         System.out.println("3 — Посчитать стоимость доставки");
+        System.out.println("4 — Отследить посылку");
         System.out.println("0 — Завершить");
     }
 
     private static void addParcel() {
+
         String type = "";
         System.out.println("Выберите тип посылки: 1 - обычная, 2 - скоропортящаяся, 3 - хрупкая");
         while (!type.equals("1") && !type.equals("2") && !type.equals("3")) {
@@ -72,7 +78,9 @@ public class DeliveryApp {
                 System.out.println("Ваша скоропортящаяся посылка добавлена в список");
                 break;
             case "3":
-                allParcels.add(new FragileParcel(description, weight, deliveryAddress, sendDay));
+                FragileParcel fragileParcel = new FragileParcel(description, weight, deliveryAddress, sendDay);
+                allParcels.add(fragileParcel);
+                trackableParcels.add(fragileParcel);
                 System.out.println("Ваша хрупкая посылка добавлена в список");
                 break;
         }
@@ -91,5 +99,13 @@ public class DeliveryApp {
             sum += parcel.calculateDeliveryCost();
         }
         System.out.println("Общая стоимость посылок: " + sum);
+    }
+
+    private static void reportTrackableDelivery(){
+        for (Trackable trackableDelivery: trackableParcels){
+            System.out.println("Введите промежуточный пункт отправления");
+            String newLocation = scanner.nextLine();
+            trackableDelivery.reportStatus(newLocation);
+        }
     }
 }

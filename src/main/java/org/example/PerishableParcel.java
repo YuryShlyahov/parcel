@@ -1,12 +1,13 @@
 package org.example;
 
 public class PerishableParcel extends Parcel{
-    static final double BASE_COST = 3;
+
     private int timeToLive;
 
     public PerishableParcel(String description, int weight, String deliveryAddress, int sendDay, int timeToLive) {
         super(description, weight, deliveryAddress, sendDay);
         this.timeToLive = timeToLive;
+        baseCost = 3;
     }
 
     public int getTimeToLive() {
