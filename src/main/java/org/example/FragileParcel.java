@@ -1,7 +1,7 @@
 package org.example;
 
 public class FragileParcel extends Parcel implements Trackable {
-
+    private static final double BASE_COST = 4.0;
     public FragileParcel(String description, int weight, String deliveryAddress, int sendDay) {
         super(description, weight, deliveryAddress, sendDay);
     }
@@ -14,7 +14,7 @@ public class FragileParcel extends Parcel implements Trackable {
 
     @Override
     public double getBaseCost() {
-        return 4.0;
+        return BASE_COST;
     }
 
     @Override

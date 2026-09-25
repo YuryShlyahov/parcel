@@ -5,7 +5,7 @@ public abstract class Parcel {
     private final int weight;
     private final String deliveryAddress;
     private final int sendDay;
-    public static double baseCost;
+
 
     public Parcel(String description, int weight, String deliveryAddress, int sendDay) {
         this.description = description;
@@ -14,9 +14,7 @@ public abstract class Parcel {
         this.sendDay = sendDay;
     }
 
-    public double getBaseCost() {
-        return baseCost;
-    }
+    abstract public double getBaseCost();
 
     public String getDescription() {
         return description;

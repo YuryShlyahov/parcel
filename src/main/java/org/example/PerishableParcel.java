@@ -1,7 +1,7 @@
 package org.example;
 
 public class PerishableParcel extends Parcel {
-
+    private static final double BASE_COST = 3.0;
     private final int timeToLive;
 
     public PerishableParcel(String description, int weight, String deliveryAddress, int sendDay, int timeToLive) {
@@ -23,6 +23,6 @@ public class PerishableParcel extends Parcel {
 
     @Override
     public double getBaseCost() {
-        return 3.0;
+        return BASE_COST;
     }
 }

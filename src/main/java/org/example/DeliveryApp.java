@@ -63,15 +63,40 @@ public class DeliveryApp {
                 System.out.println("Введено некорректное значение, повторите ввод.");
         }
         System.out.println("Введите описание посылки");
-        String description = scanner.nextLine();
-        System.out.println("Введите вес посылки (в граммах)");
-        int weight = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Введите адрес доставки посылки");
-        String deliveryAddress = scanner.nextLine();
+        String description = "";
+        while (description.equals("")) {
+            description = scanner.nextLine();
+            if (description.equals("")) {
+                System.out.println("Ошибка, введена пустая строка. Введите описание.");
+            }
+        }
+        System.out.println("Введите вес посылки (в граммах).");
+        int weight = 0;
+        while (weight <= 0) {
+            weight = scanner.nextInt();
+            scanner.nextLine();
+            if (weight <= 0) {
+                System.out.println("Вес должен быть выше 0, повторите ввод.");
+            }
+        }
+        System.out.println("Введите адрес доставки посылки.");
+        String deliveryAddress = "";
+        while (deliveryAddress.equals("")) {
+            deliveryAddress = scanner.nextLine();
+            if (deliveryAddress.equals("")) {
+                System.out.println("Ошибка, введена пустая строка. Введите точный адрес.");
+            }
+        }
+
         System.out.println("Введите дату отправки");
-        int sendDay = scanner.nextInt();
-        scanner.nextLine();
+        int sendDay = 0;
+        while (sendDay <= 0 || sendDay > 31) {
+            sendDay = scanner.nextInt();
+            scanner.nextLine();
+            if (sendDay <= 0 || sendDay > 31) {
+                System.out.println("Дата должна быть от 1 до 31");
+            }
+        }
         switch (type) {
             case "1":
                 StandardParcel standardParcel = new StandardParcel(description, weight, deliveryAddress, sendDay);
@@ -81,8 +106,14 @@ public class DeliveryApp {
                 break;
             case "2":
                 System.out.println("Введите срок годности посылки");
-                int timeToLive = scanner.nextInt();
-                scanner.nextLine();
+                int timeToLive = 0;
+                while (timeToLive <= 0) {
+                    timeToLive = scanner.nextInt();
+                    scanner.nextLine();
+                    if (timeToLive <= 0) {
+                        System.out.println("срок годности должен быть выше 0, повторите ввод.");
+                    }
+                }
                 PerishableParcel perishableParcel = new PerishableParcel(description, weight, deliveryAddress, sendDay, timeToLive);
                 allParcels.add(perishableParcel);
                 System.out.println("Ваша скоропортящаяся посылка добавлена в список");
@@ -99,9 +130,16 @@ public class DeliveryApp {
     }
 
     private static void sendParcels() {
+        System.out.println("Введите текущую дату");
+        int currentDate = scanner.nextInt();
+        scanner.nextLine();
         for (Parcel parcel : allParcels) {
-            parcel.packageItem();
-            parcel.deliver();
+            if (parcel instanceof PerishableParcel && ((PerishableParcel) parcel).isExpired(currentDate)) {
+                System.out.println("Извините, срок годности посылки истек, отправка невозможна");
+            } else {
+                parcel.packageItem();
+                parcel.deliver();
+            }
         }
     }
 
@@ -131,13 +169,19 @@ public class DeliveryApp {
         }
         switch (boxType) {
             case "1":
-                standardParcelBox.getAllParcels();
+                for (StandardParcel standardParcel : standardParcelBox.getAllParcels()) {
+                    System.out.println(standardParcel.getDescription());
+                }
                 break;
             case "2":
-                perishableParcelBox.getAllParcels();
+                for (PerishableParcel perishableParcel : perishableParcelBox.getAllParcels()) {
+                    System.out.println(perishableParcel.getDescription());
+                }
                 break;
             case "3":
-                fragileParcelBox.getAllParcels();
+                for (FragileParcel fragileParcel : fragileParcelBox.getAllParcels()) {
+                    System.out.println(fragileParcel.getDescription());
+                }
                 break;
         }
     }

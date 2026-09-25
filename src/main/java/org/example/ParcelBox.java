@@ -3,10 +3,10 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParcelBox<T extends Parcel> {
-    List<T> parcelsInBox = new ArrayList<>();
-    int maxWeight;
-    int weight;
+public final class ParcelBox<T extends Parcel> {
+    private List<T> parcelsInBox = new ArrayList<>();
+    private final int maxWeight;
+    private int weight;
 
     public ParcelBox(int maxWeight) {
         this.maxWeight = maxWeight;
@@ -28,10 +28,7 @@ public class ParcelBox<T extends Parcel> {
         }
     }
 
-    public void getAllParcels() {
-        System.out.println("Посылки в коробке: ");
-        for (T parcel : parcelsInBox) {
-            System.out.println(parcel.getDescription());
-        }
+    public List<T> getAllParcels() {
+        return parcelsInBox;
     }
 }
