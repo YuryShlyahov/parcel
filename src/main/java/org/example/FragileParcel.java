@@ -4,7 +4,6 @@ public class FragileParcel extends Parcel implements Trackable {
 
     public FragileParcel(String description, int weight, String deliveryAddress, int sendDay) {
         super(description, weight, deliveryAddress, sendDay);
-        baseCost = 4;
     }
 
     @Override
@@ -14,7 +13,14 @@ public class FragileParcel extends Parcel implements Trackable {
     }
 
     @Override
+    public double getBaseCost() {
+        return 4.0;
+    }
+
+    @Override
     public void reportStatus(String newLocation) {
         System.out.println("Хрупкая посылка <<" + getDescription() + ">> изменила местоположение на " + newLocation);
     }
+
+
 }

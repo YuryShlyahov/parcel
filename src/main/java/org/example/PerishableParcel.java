@@ -7,7 +7,6 @@ public class PerishableParcel extends Parcel {
     public PerishableParcel(String description, int weight, String deliveryAddress, int sendDay, int timeToLive) {
         super(description, weight, deliveryAddress, sendDay);
         this.timeToLive = timeToLive;
-        baseCost = 3;
     }
 
     public int getTimeToLive() {
@@ -20,5 +19,10 @@ public class PerishableParcel extends Parcel {
         } else {
             return true;
         }
+    }
+
+    @Override
+    public double getBaseCost() {
+        return 3.0;
     }
 }

@@ -5,13 +5,17 @@ public abstract class Parcel {
     private final int weight;
     private final String deliveryAddress;
     private final int sendDay;
-    public static double baseCost = 0;
+    public static double baseCost;
 
     public Parcel(String description, int weight, String deliveryAddress, int sendDay) {
         this.description = description;
         this.weight = weight;
         this.deliveryAddress = deliveryAddress;
         this.sendDay = sendDay;
+    }
+
+    public double getBaseCost() {
+        return baseCost;
     }
 
     public String getDescription() {
@@ -39,6 +43,6 @@ public abstract class Parcel {
     }
 
     public double calculateDeliveryCost() {
-        return baseCost * getWeight();
+        return getBaseCost() * getWeight();
     }
 }
