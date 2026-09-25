@@ -1,6 +1,6 @@
 package org.example;
 
-public class FragileParcel extends Parcel implements Trackable{
+public class FragileParcel extends Parcel implements Trackable {
 
     public FragileParcel(String description, int weight, String deliveryAddress, int sendDay) {
         super(description, weight, deliveryAddress, sendDay);

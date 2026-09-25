@@ -1,10 +1,10 @@
 package org.example;
 
 public abstract class Parcel {
-    private String description;
-    private int weight;
-    private String deliveryAddress;
-    private int sendDay;
+    private final String description;
+    private final int weight;
+    private final String deliveryAddress;
+    private final int sendDay;
     public static double baseCost = 0;
 
     public Parcel(String description, int weight, String deliveryAddress, int sendDay) {
@@ -30,16 +30,15 @@ public abstract class Parcel {
         return deliveryAddress;
     }
 
-
-
-    public void packageItem(){
+    public void packageItem() {
         System.out.println("Посылка <<" + getDescription() + ">> упакована");
     }
-    public void deliver(){
-        System.out.println("Посылка <<" + getDescription() + ">> доставлена по адресу "  + getDeliveryAddress());
+
+    public void deliver() {
+        System.out.println("Посылка <<" + getDescription() + ">> доставлена по адресу " + getDeliveryAddress());
     }
 
-    public double calculateDeliveryCost(){
-        return baseCost*getWeight();
+    public double calculateDeliveryCost() {
+        return baseCost * getWeight();
     }
 }

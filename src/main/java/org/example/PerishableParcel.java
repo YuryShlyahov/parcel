@@ -1,6 +1,6 @@
 package org.example;
 
-public class PerishableParcel extends Parcel{
+public class PerishableParcel extends Parcel {
 
     private int timeToLive;
 
@@ -14,8 +14,8 @@ public class PerishableParcel extends Parcel{
         return timeToLive;
     }
 
-    public boolean isExpired(int currentDay){
-        if(getSendDay() + getTimeToLive() >= currentDay) {
+    public boolean isExpired(int currentDay) {
+        if (getSendDay() + getTimeToLive() >= currentDay) {
             return false;
         } else {
             return true;
