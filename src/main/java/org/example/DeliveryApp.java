@@ -9,9 +9,9 @@ public class DeliveryApp {
     private static final Scanner scanner = new Scanner(System.in);
     private static final List<Parcel> allParcels = new ArrayList<>();
     private static final List<Trackable> trackableParcels = new ArrayList<>();
-    private static final ParcelBox<StandardParcel> standardParcelBox = new ParcelBox(5000);
-    private static final ParcelBox<FragileParcel> fragileParcelBox = new ParcelBox(500);
-    private static final ParcelBox<PerishableParcel> perishableParcelBox = new ParcelBox(2000);
+    private static final ParcelBox<StandardParcel> standardParcelBox = new ParcelBox<>(5000);
+    private static final ParcelBox<FragileParcel> fragileParcelBox = new ParcelBox<>(500);
+    private static final ParcelBox<PerishableParcel> perishableParcelBox = new ParcelBox<>(2000);
 
     public static void main(String[] args) {
         boolean running = true;

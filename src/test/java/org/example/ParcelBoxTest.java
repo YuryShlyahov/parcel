@@ -1,11 +1,9 @@
 package org.example;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ParcelBoxTest {
     static ParcelBox<StandardParcel> standardParcelParcelBox;
@@ -28,7 +26,7 @@ public class ParcelBoxTest {
     @Test
     public void overloadBoxShouldReturnTrue() {
         standardParcelParcelBox.addParcel(bigParcel);
-        assertEquals(standardParcelParcelBox.getWeight(), 0);
+        assertEquals(0, standardParcelParcelBox.getWeight());
     }
 
 }

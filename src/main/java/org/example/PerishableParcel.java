@@ -2,7 +2,7 @@ package org.example;
 
 public class PerishableParcel extends Parcel {
 
-    private int timeToLive;
+    private final int timeToLive;
 
     public PerishableParcel(String description, int weight, String deliveryAddress, int sendDay, int timeToLive) {
         super(description, weight, deliveryAddress, sendDay);
