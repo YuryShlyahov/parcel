@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ParcelBox<T extends Parcel> {
-    private List<T> parcelsInBox = new ArrayList<>();
+    private final List<T> parcelsInBox = new ArrayList<>();
     private final int maxWeight;
     private int weight;
 
